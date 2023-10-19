@@ -14,7 +14,6 @@ phases:
       nodejs: 10
 	  
       - npm install  # Install project dependencies
-      - npm run build  # Or your build command (e.g., "yarn build" or "ng build")
       - echo "Building the Docker image..."
       - docker build -t srashti-repository .
       - echo "Docker build completed."

@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Log in to AWS ECR
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 563932278140.dkr.ecr.ap-southeast-2.amazonaws.com
+  build:
+    commands:
+      - cd frontend
+  phases:
+    install:
+      runtime-versions:
+      nodejs: 10
+	  
+      - npm install  # Install project dependencies
+      - npm run build  # Or your build command (e.g., "yarn build" or "ng build")
+      - echo "Building the Docker image..."
+      - docker build -t srashti-repository .
+      - echo "Docker build completed."
+      - # Tag the Docker image for the ECR repository
+      - docker tag srashti-repository:latest 563932278140.dkr.ecr.ap-southeast-2.amazonaws.com/srashti-repository:latest
+      - # Push the Docker image to ECR
+      - docker push 563932278140.dkr.ecr.ap-southeast-2.amazonaws.com/srashti-repository:latest
+      - echo "Docker image pushed to ECR."
+
+artifacts:
+  files: '**/*'  # Include all files in the build output
+  name: frontend
+
+cache:
+  paths:
+    - node_modules/

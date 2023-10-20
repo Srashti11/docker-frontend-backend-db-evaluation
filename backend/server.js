@@ -16,7 +16,7 @@ async function main() {
   app.use(express.json());
   app.use("/api", routes);
   app.get('/', (req, res) => {
-    res.status(200).send('Today we have party!');
+    res.status(200).send('Today we have party! from prasad sir side');
 });
 
   app.listen(port, () => {

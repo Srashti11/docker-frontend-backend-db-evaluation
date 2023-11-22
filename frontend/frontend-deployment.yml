@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: srashti
+spec:
+  replicas: 2  # Number of desired replicas/pods
+  selector:
+    matchLabels:
+      app: front-app
+  template:
+    metadata:
+      labels:
+        app: front-app
+    spec:
+      containers:
+      - name: frontend
+        image: 976226188110.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest  # Replace with your actual container image
+        ports:
+        - containerPort: 3000  # Replace with the port your application listens on
+---
+
+# https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-deployment
+  namespace: srashti
+spec:
+  selector:
+    app: front-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
+ 

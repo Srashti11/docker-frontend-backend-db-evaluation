@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
-  namespace: srashti
+  namespace: mongo-s
 spec:
   replicas: 2  # Number of desired replicas/pods
   selector:
@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-deployment
-  namespace: srashti
+  namespace: mongo-s
 spec:
   selector:
     app: front-app

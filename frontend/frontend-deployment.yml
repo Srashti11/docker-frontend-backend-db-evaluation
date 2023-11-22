@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: 976226188110.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest  # Replace with your actual container image
+        image:  976226188110.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest # Replace with your actual container image
         ports:
         - containerPort: 3000  # Replace with the port your application listens on
 ---

@@ -4,7 +4,7 @@ metadata:
   name: frontend-deployment
   namespace: srashti
 spec:
-  replicas: 2  # Number of desired replicas/pods
+  replicas: 1  # Number of desired replicas/pods
   selector:
     matchLabels:
       app: front-app
